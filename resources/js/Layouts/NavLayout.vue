@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import MenuIcon from 'vue-material-design-icons/Menu.vue';
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
+import SideNavItem from "@/Components/SideNavItem.vue";
 
 
 import { Link } from '@inertiajs/vue3';
@@ -59,6 +60,13 @@ const showingNavigationDropdown = ref(false);
                     src="https://yt3.ggpht.com/ysLHmrLE5AZ6iypekgvwdSouurPDzR6ShhKpGyrJsewZDA-HjhJEqN7oURLQ5gOwyQwmkV4B=s88-c-k-c0x00ffffff-no-rj"
                 >
             </div>
+        </div>
+
+        <div id="sideNave" class="h-[100%] fixed z-0 bg-black w-[240px]">
+            <ul class="mt-[60px] w-full">
+                <SideNavItem :openSideNav="false" :iconString="'Home'"/>
+            </ul>
+
         </div>
 
 
