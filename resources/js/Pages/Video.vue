@@ -16,7 +16,11 @@ import ThumbDownOutline from 'vue-material-design-icons/ThumbDownOutline.vue'
     <Head title="youtube clone" />
 
     <NavLayout>
-
+       <div class="xl:flex">
+           <div class="p-3">
+               <video src="/videos/tiger.mp4" controls autoplay />
+           </div>
+       </div>
     </NavLayout>
 
 </template>
