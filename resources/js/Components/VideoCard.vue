@@ -15,11 +15,7 @@ let show = ref(false)
 let showVideo = ref(false)
 let video = ref(null)
 let width = ref(document.documentElement.clientWidth);
-onMounted(() => {
-    window.addEventListener('resize', () => {
-        width.value = document.documentElement.clientWidth;
-    });
-})
+
 watch(() => show.value, (show) => {
     if (show) {
         showVideo.value = true
