@@ -77,8 +77,10 @@ let vid = {
 
            </div>
            <div class="w-[500px] p-3 sm:block hidden">
+                <div class="flex mb-3" >
+                    <RecommendedVideos :vid="vid" />
+                </div>
 
-                       <RecommendedVideos :vid="vid" />
 
                </div>
            </div>
