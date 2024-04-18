@@ -4,10 +4,18 @@ import NavLayout from '@/Layouts/NavLayout.vue';
 import CheckCircle from 'vue-material-design-icons/CheckCircle.vue'
 import ThumbUpOutline from 'vue-material-design-icons/ThumbUpOutline.vue'
 import ThumbDownOutline from 'vue-material-design-icons/ThumbDownOutline.vue'
+import RecommendedVideos from "@/Components/recommendedVideos.vue";
 
 
 
-
+let vid = {
+    title: "the best tiger",
+    user: "hossam",
+    views: "23M",
+    image: "https://picsum.photos/id/15/100",
+    video: "/videos/tiger.mp4",
+    thumbnail: "/videos/thumbnails/tiger.png"
+};
 
 
 </script>
@@ -55,7 +63,7 @@ import ThumbDownOutline from 'vue-material-design-icons/ThumbDownOutline.vue'
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in malesuada nibh, sed sodales ipsum. Suspendisse dictum dignissim hendrerit.
                         </div>
                         <div class="mt-4 flex items-center">
-                            <ThumbUpOutline fillColor="#FFFFFF" :size="20" class="pr-2"/>
+                            <ThumbUpOutline fillColor="#FFFFFF" :size="20" class="pr-2 hover:bg-gray-400 rounded-full"/>
                             <div class="text-gray-400 text-sm font-extrabold pr-5">{{ (Math.random() * 100).toFixed(0) }}</div>
                             <ThumbDownOutline fillColor="#FFFFFF" :size="20"/>
                         </div>
@@ -68,7 +76,14 @@ import ThumbDownOutline from 'vue-material-design-icons/ThumbDownOutline.vue'
             </div>
 
            </div>
-       </div>
+           <div class="w-[500px] p-3 sm:block hidden">
+
+                       <RecommendedVideos :vid="vid" />
+
+               </div>
+           </div>
+
+
     </NavLayout>
 
 </template>
