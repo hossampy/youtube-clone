@@ -4,9 +4,7 @@ import NavLayout from "@/Layouts/NavLayout.vue";
 import VideoCard from "@/Components/VideoCard.vue";
 
 defineProps({
-    canLogin: {
-        type: Boolean,
-    },
+    videos: Array
 
 });
 
@@ -19,16 +17,19 @@ defineProps({
     <NavLayout>
         <div>
             <div class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2">
+                <div v-for="video in videos" :key="video.id">
+                    <VideoCard
+                        :title="video.title"
+                        :user="video.user"
+                        :views="video.views"
+                        :image="`https://picsum.photos/id/${index}/100`"
+                        :videoUrl="video.video"
+                        :thumbnail="video.thumbnail"
+                    />
+
+                </div>
 
 
-                        <VideoCard
-                            title="the best tiger"
-                            user="hossam"
-                            views="23M"
-                            image="https://picsum.photos/id/15/100"
-                            videoUrl="/videos/tiger.mp4"
-                            thumbnail="/videos/thumbnails/tiger.png"
-                        />
 
 
             </div>
