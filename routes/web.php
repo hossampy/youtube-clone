@@ -11,6 +11,9 @@ Route::get('/', function () {
 Route::get('delete-video', function () {
     return Inertia::render('DeleteVideo');
 })->name('deleteVideo');
+Route::get('add-video', function () {
+    return Inertia::render('AddVideo');
+})->name('addVideo');
 Route::get('/videos/{id}',[\App\Http\Controllers\VideosController::class,'show'])->name('videos.show');
 
 

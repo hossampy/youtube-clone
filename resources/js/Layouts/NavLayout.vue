@@ -63,7 +63,8 @@ let openSideNav = ref(true);
             </div>
         </div>
 
-        <div id="sideNave" class="h-[100%] fixed z-0 bg-black "
+        <div v-if="$page.url === '/' "
+            id="sideNave" class="h-[100%] fixed z-0 bg-black "
                 :class="[!openSideNav ? 'w-[70px]':'w-[240px]']">
 
             <ul :class="[!openSideNav ? 'p-2':'px-5 pb-2 pt-[7px]']"
@@ -103,8 +104,49 @@ let openSideNav = ref(true);
 
         </div>
 
-        <div id="SideNavOverly">
+        <div >
+            <div
+                 id="sideNaveOverlay"
+                 ref="sideNaveOverlay"
+                 class="h-[100%] fixed z-0 bg-black "
+                 :class="[!openSideNav ? 'w-[70px]':'w-[240px]']">
 
+                <ul :class="[!openSideNav ? 'p-2':'px-5 pb-2 pt-[7px]']"
+                    class="mt-[60px] w-full">
+                    <SideNavItem :openSideNav="openSideNav" :iconString="'Home'"/>
+                    <div class="border-b border-b-gray-700 my-2.5"></div>
+
+                    <SideNavItem :openSideNav="openSideNav" :iconString="'Add Video'"/>
+                    <div class="border-b border-b-gray-700 my-2.5"></div>
+                    <SideNavItem :openSideNav="openSideNav" :iconString="'Delete Video'"/>
+                    <div class="border-b border-b-gray-700 my-2.5"></div>
+                    <SideNavItem :openSideNav="openSideNav" :iconString="'Subscriptions'"/>
+                    <SideNavItem :openSideNav="openSideNav" iconString="Library"/>
+                    <SideNavItem :openSideNav="openSideNav" iconString="Liked"/>
+                    <SideNavItem :openSideNav="openSideNav" iconString="History"/>
+                    <SideNavItem :openSideNav="openSideNav" iconString="Watch Later"/>
+                    <div v-if="openSideNav">
+                        <div class="border-b border-b-gray-700 my-2.5"/>
+
+                    </div>
+                    <div :class="[openSideNav ? '':'hidden']"
+                         class="text-gray-400 text-[14px] text-extrabold">
+                        About Press Copyright
+                        <div>Contact us</div>
+                        Creator Advertise Developers
+                    </div>
+                    <div :class="[openSideNav ? '':'hidden']"
+                         class="border-b border-b-gray-700 my-2.5"></div>
+                    <div :class="[openSideNav ? '':'hidden']"
+                         class="text-gray-400 text-[14px] text-extrabold">
+                        Terms Privacy Policy & Safety
+                        <div>How YouTube works</div>
+                        <span>Test new features</span>
+                    </div>
+
+                </ul>
+
+            </div>
         </div>
         <div  class="w-[100%] h-[calc(100vh-60px)] absolute right-0 top-[60px]"
               :class="{
