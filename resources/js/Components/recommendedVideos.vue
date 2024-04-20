@@ -22,7 +22,7 @@ watch(() => show.value, (show) => {
 </script>
 
 <template>
-    <div @mouseover="show = true" @mouseleave="show = false">
+    <div @mouseover="show = true" @mouseleave="show = false" class="mt-4 border-2 border-red-900">
         <img
             width="340"
             class="aspect-video cursor-pointer rounded-lg"
@@ -36,7 +36,7 @@ watch(() => show.value, (show) => {
     </div>
 
 
-    <div class="w-[500px]">
+    <div class="w-[500px] mt-4">
         <div class="px-1.5 pl-3 text-white mt-1">
             <div class="text-[15px] pb-1.5 font-extrabold w-full cursor-pointer">{{ vid.title }}</div>
 

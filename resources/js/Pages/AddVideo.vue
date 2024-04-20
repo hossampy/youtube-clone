@@ -1,13 +1,64 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { ref } from 'vue'
+import { Head, router } from '@inertiajs/vue3';
 import NavLayout from '@/Layouts/NavLayout.vue';
 
+defineProps({ errors: Object })
 
-defineProps({videos : Array})
+let title = ref('')
+let image = ref('')
+let video = ref('')
+let error = ref({
+    title: null,
+    image: null,
+    video: null,
+})
 
+const addVideo = () => {
+    let err = false
 
+    error.value.title = null
+    error.value.image = null
+    error.value.video = null
 
+    if (!title.value) {
+        error.value.title = 'Please enter a title';
+        err = true
+    }
+    if (!image.value) {
+        error.value.image = 'Please select a thumbnail';
+        err = true
+    }
+    if (!video.value) {
+        error.value.video = 'Please select a video';
+        err = true
+    }
 
+    if (err) {
+        return
+    }
+
+    let data = new FormData()
+
+    data.append('title', title.value)
+    data.append('image', image.value)
+    data.append('video', video.value)
+
+    router.post('/videospost ', data)
+
+}
+
+// Define a function to handle the selection of a video file
+const getVideo = (e) => {
+    // Update the 'video' variable with the selected video file
+    video.value = e.target.files[0];
+}
+
+// Define a function to handle the selection of an image file
+const getImage = (e) => {
+    // Update the 'image' variable with the selected image file
+    image.value = e.target.files[0];
+}
 </script>
 
 <template>
@@ -17,11 +68,11 @@ defineProps({videos : Array})
     <NavLayout>
         <div class="max-w-xl mx-auto px-4 ">
             <div class="text-white font-extrabold text-3xl py-10">Add Video</div>
-            <form >
+            <form @submit.prevent="addVideo">
                 <div>
                     <div class="text-gray-200">Title</div>
                     <input
-
+                        v-model="title"
                         type="text"
                         class="
                         form-control
@@ -47,7 +98,7 @@ defineProps({videos : Array})
                     "
                         placeholder="My cool video"
                     />
-
+                    <span v-if="error.title" class="text-red-500">{{ error.title }}</span>
                 </div>
 
                 <div class="my-5"></div>
@@ -57,7 +108,7 @@ defineProps({videos : Array})
                         <div class="w-full">
                             <div class="text-gray-200">Thumbnail</div>
                             <input
-
+                                @change="getImage"
                                 class="
                                 form-control
                                 block
@@ -81,16 +132,18 @@ defineProps({videos : Array})
                             >
                         </div>
                     </div>
-                    </div>
+                    <span v-if="error.image" class="text-red-500">{{ error.image }}</span>
+                    <span v-if="errors && errors.image" class="text-red-500">{{ errors.image }}</span>
+                </div>
 
                 <div class="my-5"></div>
 
                 <div>
                     <div class="flex justify-center">
                         <div class="w-full">
-                            <div class="text-gray-400">Video/MP4</div>
+                            <div class="text-gray-200">Video/MP4</div>
                             <input
-
+                                @change="getVideo"
                                 class="
                                 form-control
                                 block
@@ -110,8 +163,10 @@ defineProps({videos : Array})
                                 focus:outline-none
                             "
                                 type="file"
-                                id="formFile">
-
+                                id="formFile"
+                            >
+                            <span v-if="error.video" class="text-red-500">{{ error.video }}</span>
+                            <span v-if="errors && errors.video" class="text-red-500">{{ errors.video }}</span>
                         </div>
                     </div>
                 </div>
